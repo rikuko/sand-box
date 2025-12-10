@@ -24,8 +24,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    const loggedUserJSON =
-      window.localStorage.getItem('loggedNoteAppUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedNoteAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -75,6 +74,7 @@ const App = () => {
     ? notes
     : notes.filter(note => note.important)
 
+
   const handleLogin = async event => {
     event.preventDefault()
     console.log('Logging in with', username, password)
@@ -85,7 +85,8 @@ const App = () => {
       )
 
       window.localStorage.setItem(
-        'loggedNoteAppUser', JSON.stringify(user))
+        'loggedNoteAppUser', JSON.stringify(user)
+      )
 
       noteService.setToken(user.token)
       setUser(user)
