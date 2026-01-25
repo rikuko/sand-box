@@ -10,13 +10,12 @@ import noteService from './services/notes'
 import Togglable from './components/Togglable'
 
 const App = () => {
-  const [notes, setNotes] = useState([])
-  const [newNote, setNewNote] = useState('')
-  const [showAll, setShowAll] = useState(true)
-  const [errorMessage, setErrorMessage] = useState(null)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
+  const [ notes, setNotes ] = useState([])
+  const [ showAll, setShowAll ] = useState(true)
+  const [ errorMessage, setErrorMessage ] = useState(null)
+  const [ username, setUsername ] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ user, setUser ] = useState(null)
 
   const noteFormRef = useRef()
 
@@ -84,7 +83,7 @@ const App = () => {
   const notesToShow = showAll ? notes : notes.filter(note => note.important)
 
   const loginForm = () => (
-    <Togglable buttonLabel="Login">
+    <Togglable buttonLabel='Login'>
       <LoginForm
         username={username}
         password={password}
@@ -96,11 +95,10 @@ const App = () => {
   )
 
   const noteForm = () => (
-    <Togglable buttonLabel="New note" ref={noteFormRef}>
+    <Togglable buttonLabel='New note' ref={noteFormRef}>
       <NoteForm createNote={addNote} />
     </Togglable>
   )
-  console.log(newNote)
 
   return (
     <div>
@@ -125,6 +123,8 @@ const App = () => {
           <Note
             key={note.id}
             note={note}
+            important={note.important}
+            content={note.content}
             toggleImportance={() => toggleImportanceOf(note.id)}
           />
         ))}
