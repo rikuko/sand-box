@@ -1,62 +1,54 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Note from './Note'
+import { expect } from 'vitest'
 
-test('renders content', () => {
+// Test 1.
+test('Test 1.: renders content', () => {
   const note = {
     content: 'Component testing is done with react-testing-library',
     important: true
   }
-
-  render(<Note note={note} />)
-
+  render(<Note note={ note } />)
   screen.debug()
-
   const element = screen.getByText('Component testing is done with react-testing-library')
-
-  screen.debug(element)
 
   expect(element).toBeDefined()
 })
 
-
-test('does not render this', () => {
+// Test 2.
+test('Test 2.: does not render this', () => {
   const note = {
-    content: 'This is a reminder',
+    content: 'this is a reminder',
     important: true
   }
-
-  render(<Note note={note} />)
+  render(<Note note={ note } />)
 
   const element = screen.queryByText('do not want this thing to be rendered')
+  screen.debug(element)
   expect(element).toBeNull()
 })
 
-
-test('renders content', () => {
+//Test 3.
+test('Test 3.: renders content', () => {
   const note = {
     content: 'Component testing is done with react-testing-library',
     important: true
   }
-
-  const { container } = render(<Note note={note} />)
-
+  const { container } = render(<Note note={ note } />)
   const div = container.querySelector('.note')
-  expect(div).toHaveTextContent(
-    'Component testing is done with react-testing-library'
-  )
+  expect(div).toHaveTextContent('Component testing is done with react-testing-library')
 })
 
-// testaa napin painamista
-test('clicking the button calls event handler once', async () => {
-  const note = {
+// Test 4.
+test('Test 4.: clicking the button calls event handler once', async () => {
+  const note ={
     content: 'Component testing is done with react-testing-library',
     important: true
   }
-
   const mockHandler = vi.fn()
 
-  render(<Note note={note} toggleImportance={mockHandler} />)
+  render(<Note note={ note } toggleImportance={ mockHandler } />)
 
   const user = userEvent.setup()
   const button = screen.getByText('make not important')
@@ -64,5 +56,3 @@ test('clicking the button calls event handler once', async () => {
 
   expect(mockHandler.mock.calls).toHaveLength(1)
 })
-
-//! Jatka kohdasta osa 5c Nappien painelu
