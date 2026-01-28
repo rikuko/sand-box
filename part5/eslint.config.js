@@ -39,6 +39,7 @@ export default [
       'indent': [ 'error', 2 ],
       'quotes': [ 'error', 'single' ],
       'jsx-quotes': [ 'error', 'prefer-single' ],
+      'react/jsx-curly-spacing': [ 'error', { 'when': 'always', 'children': true } ],
 
       'semi': [ 'error', 'never' ],
       'linebreak-style': [ 'error', 'unix' ],
