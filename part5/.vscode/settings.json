@@ -21,6 +21,7 @@
     "peacock.color": "#61dafb",
     "cSpell.words": ["Noteapp"],
     "eslint.workingDirectories": [{ "mode": "auto" }], 
+    "eslint.validate": ["javascript", "javascriptreact"],
     "editor.codeActionsOnSave": {
         "source.fixAll": "explicit"  
     }

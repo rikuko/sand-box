@@ -40,7 +40,6 @@ export default [
       'quotes': [ 'error', 'single' ],
       'jsx-quotes': [ 'error', 'prefer-single' ],
 
-
       'semi': [ 'error', 'never' ],
       'linebreak-style': [ 'error', 'unix' ],
       'array-bracket-newline': [ 'warn', 'consistent' ],
@@ -63,6 +62,21 @@ export default [
 
       'react/prop-types': [ 'off', { ignore: [] } ],
       eqeqeq: 'error'
+    }
+  },
+  {
+    files: [ '**/*.test.{js,jsx}' ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: {
+        ...globals.browser,
+        ...globals.vitest
+      },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module'
+      }
     }
   }
 ]
