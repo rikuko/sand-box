@@ -85,49 +85,49 @@ const App = () => {
   const loginForm = () => (
     <Togglable buttonLabel='Login'>
       <LoginForm
-        username={username}
-        password={password}
-        handleUsernameChange={({ target }) => setUsername(target.value)}
-        handlePasswordChange={({ target }) => setPassword(target.value)}
-        handleSubmit={handleLogin}
+        username={ username }
+        password={ password }
+        handleUsernameChange={ ({ target }) => setUsername(target.value) }
+        handlePasswordChange={ ({ target }) => setPassword(target.value) }
+        handleSubmit={ handleLogin }
       />
     </Togglable>
   )
 
   const noteForm = () => (
-    <Togglable buttonLabel='New note' ref={noteFormRef}>
-      <NoteForm createNote={addNote} />
+    <Togglable buttonLabel='New note' ref={ noteFormRef }>
+      <NoteForm createNote={ addNote } />
     </Togglable>
   )
 
   return (
     <div>
       <h1>Notes</h1>
-      <Notification message={errorMessage} />
+      <Notification message={ errorMessage } />
 
-      {!user && loginForm()}
-      {user && (
+      { !user && loginForm() }
+      { user && (
         <div>
-          <p>{user.name} logged in</p>
-          {noteForm()}
+          <p>{ user.name } logged in</p>
+          { noteForm() }
         </div>
-      )}
+      ) }
 
       <div>
-        <button onClick={() => setShowAll(!showAll)}>
-          show {showAll ? 'important' : 'all'}
+        <button onClick={ () => setShowAll(!showAll) }>
+          show { showAll ? 'important' : 'all' }
         </button>
       </div>
       <ul>
-        {notesToShow.map(note => (
+        { notesToShow.map(note => (
           <Note
-            key={note.id}
-            note={note}
-            important={note.important}
-            content={note.content}
-            toggleImportance={() => toggleImportanceOf(note.id)}
+            key={ note.id }
+            note={ note }
+            important={ note.important }
+            content={ note.content }
+            toggleImportance={ () => toggleImportanceOf(note.id) }
           />
-        ))}
+        )) }
       </ul>
 
       <Footer />
