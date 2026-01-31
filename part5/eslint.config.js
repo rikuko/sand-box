@@ -57,6 +57,7 @@ export default [
       'lines-around-comment': [ 'error', { 'beforeBlockComment': true, 'beforeLineComment': true } ],
       'multiline-comment-style': [ 'error', 'starred-block' ],
 
+      'no-extra-semi': 'error',
       'no-unused-vars': [ 'error', { varsIgnorePattern: '^[A-Z_]' } ],
       'no-trailing-spaces': 'error',
       'no-console': 'off',
