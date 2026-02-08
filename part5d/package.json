@@ -1,19 +1,17 @@
 {
-  "name": "part5d",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "playwright test",
-    "test:report": "playwright show-report"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "@playwright/test": "^1.58.1",
-    "@types/node": "^25.1.0",
-    "globals": "^17.3.0"
-  }
+	"name": "part5d",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "playwright test",
+		"test:report": "playwright show-report"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"@playwright/test": "^1.58.1",
+		"@types/node": "^25.1.0"
+	}
 }

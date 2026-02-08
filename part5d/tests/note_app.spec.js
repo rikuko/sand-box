@@ -1,10 +1,10 @@
-const { test, expect, describe, beforeEach } = require('@playwright/test')
+const { test, expect, describe, beforeEach, afterEach } = require('@playwright/test')
 
 describe('Note app', () => {
     beforeEach(async ({ page, request }) => {
-        request.post('http://localhost:3001/api/testin/reset')
+        await request.post('http://localhost:3001/api/testing/reset')
         await request.post('http://localhost:3001/api/users', {
-            date: {
+            data: {
                 name: 'Ricky Roto',
                 username: 'rkos',
                 password: 'salainen'
@@ -36,13 +36,27 @@ describe('Note app', () => {
             await page.getByLabel('Password').fill('salainen')
             await page.getByRole('button', { name: 'Login' }).click()
         })
+
         test('a new note can be created', async ({ page }) => {
             await page.getByRole('button', { name: 'New note' }).click()
             await page.getByRole('textbox').fill('A Note created by Playwright')
             await page.getByRole('button', { name: 'Save' }).click()
             await expect(page.getByText('A Note created by Playwright')).toBeVisible()
         })
+
+        describe('and a note exists', () => {
+            beforeEach(async ({ page }) => {
+                await page.getByRole('button', { name: 'New note' }).click()
+                await page.getByRole('textbox').fill('another note by playwright')
+                await page.getByRole('button', { name: 'save' }).click()
+            })
+
+            test('importance can be changed', async ({ page }) => {
+                await page.getByRole('button', { name: 'make not important' }).click()
+                await expect(page.getByText('make important')).toBeVisible()
+            })
+        })
     })
 })
 
-//! Tietokannan kontrollointi melkein valmis. Tarkasta ja jatka!
+
