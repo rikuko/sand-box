@@ -8,9 +8,9 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: [ 'dist' ] },
+  { ignores: ['dist'] },
   {
-    files: [ '**/*.{js,jsx}' ],
+    files: ['**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -33,41 +33,41 @@ export default [
       ...reactHooks.configs.recommended.rules,
 
       'react/jsx-no-target-blank': 'off',
-      'react-refresh/only-export-components': [ 'warn', { allowConstantExport: true } ],
-      'react/jsx-closing-bracket-location': [ 'error', 'line-aligned' ],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
 
-      'indent': [ 'error', 2 ],
-      'quotes': [ 'error', 'single' ],
-      'jsx-quotes': [ 'error', 'prefer-single' ],
-      'react/jsx-curly-spacing': [ 'error', { 'when': 'always', 'children': true } ],
+      'indent': ['error', 2],
+      'quotes': ['error', 'single'],
+      'jsx-quotes': ['error', 'prefer-single'],
+      'react/jsx-curly-spacing': ['error', { 'when': 'always', 'children': true }],
 
-      'semi': [ 'error', 'never' ],
-      'linebreak-style': [ 'error', 'unix' ],
-      'array-bracket-newline': [ 'warn', 'consistent' ],
-      'array-bracket-spacing': [ 'warn', 'always' ],
-      'array-element-newline': [ 'warn', 'consistent' ],
+      'semi': ['error', 'never'],
+      'linebreak-style': ['error', 'unix'],
+      'array-bracket-newline': ['warn', 'consistent'],
+      'array-bracket-spacing': ['warn', 'always'],
+      'array-element-newline': ['warn', 'consistent'],
 
-      'max-len': [ 'error', { 'code': 120 } ],
-      'object-curly-spacing': [ 'error', 'always' ],
-      'arrow-spacing': [ 'error', { before: true, after: true } ],
+      'max-len': ['error', { 'code': 120 }],
+      'object-curly-spacing': ['error', 'always'],
+      'arrow-spacing': ['error', { before: true, after: true }],
 
-      'comma-dangle': [ 'warn', 'never' ],
-      'comma-spacing': [ 'warn', { 'before': false, 'after': true } ],
-      'comma-style': [ 'error', 'last' ],
-      'lines-around-comment': [ 'error', { 'beforeBlockComment': true, 'beforeLineComment': true } ],
-      'multiline-comment-style': [ 'error', 'starred-block' ],
+      'comma-dangle': ['warn', 'never'],
+      'comma-spacing': ['warn', { 'before': false, 'after': true }],
+      'comma-style': ['error', 'last'],
+      'lines-around-comment': ['error', { 'beforeBlockComment': true, 'beforeLineComment': true }],
+      'multiline-comment-style': ['error', 'starred-block'],
 
       'no-extra-semi': 'error',
-      'no-unused-vars': [ 'error', { varsIgnorePattern: '^[A-Z_]' } ],
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'no-trailing-spaces': 'error',
       'no-console': 'off',
 
-      'react/prop-types': [ 'off', { ignore: [] } ],
+      'react/prop-types': ['off', { ignore: [] }],
       eqeqeq: 'error'
     }
   },
   {
-    files: [ '**/*.test.{js,jsx}' ],
+    files: ['**/*.test.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: {
