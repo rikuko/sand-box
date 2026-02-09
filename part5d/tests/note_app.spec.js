@@ -1,8 +1,9 @@
-const { test, expect, describe, beforeEach, afterEach } = require('@playwright/test')
+const { test, expect, describe, beforeEach } = require('@playwright/test')
+const { loginWith, createNote } = require('./helper')
 
 describe('Note app', () => {
     beforeEach(async ({ page, request }) => {
-        await request.post('http://localhost:3001/api/testing/reset')
+        await request.post('/api/testing/reset')
         await request.post('http://localhost:3001/api/users', {
             data: {
                 name: 'Ricky Roto',
@@ -10,7 +11,7 @@ describe('Note app', () => {
                 password: 'salainen'
             }
         })
-        await page.goto('http://localhost:5173')
+        await page.goto('/')
     })
 
     test('front page can be opened', async ({ page }) => {
@@ -19,36 +20,36 @@ describe('Note app', () => {
         await expect(page.getByText('Note app, Department of Computer Science, University of Helsinki 2025')).toBeVisible()
     })
 
-    test('user can log in', async ({ page }) => {
-        await page.getByRole('button', { name: 'Login' }).click()
-        await page.getByLabel('Username').fill('rkos')
-        await page.getByLabel('Password').fill('salainen')
+    describe('login tests', () => {
+        test('user can log in with correct credentials', async ({ page }) => {
+            await loginWith(page, 'rkos', 'salainen')
+            await expect(page.getByText('Ricky Roto logged in')).toBeVisible()
+        })
 
-        await page.getByRole('button', { name: 'Login' }).click()
+        test('login fails with wrong password', async ({ page }) => {
+            await loginWith(page, 'rkos', 'wrong')
+            const errorDiv = page.locator('.error')
+            await expect(errorDiv).toContainText('wrong credentials')
+            await expect(errorDiv).toHaveCSS('border-style', 'solid')
+            await expect(errorDiv).toHaveCSS('color', 'rgb(255, 0, 0)')
 
-        await expect(page.getByText('Ricky Roto logged in')).toBeVisible()
+            await expect(page.getByText('Ricky Roto logged in')).not.toBeVisible()
+        })
     })
 
     describe('when logged in', () => {
         beforeEach(async ({ page }) => {
-            await page.getByRole('button', { name: 'Login' }).click()
-            await page.getByLabel('Username').fill('rkos')
-            await page.getByLabel('Password').fill('salainen')
-            await page.getByRole('button', { name: 'Login' }).click()
+            await loginWith(page, 'rkos', 'salainen')
         })
 
         test('a new note can be created', async ({ page }) => {
-            await page.getByRole('button', { name: 'New note' }).click()
-            await page.getByRole('textbox').fill('A Note created by Playwright')
-            await page.getByRole('button', { name: 'Save' }).click()
-            await expect(page.getByText('A Note created by Playwright')).toBeVisible()
+            await createNote(page, 'a note created by playwright')
+            await expect(page.getByText('a note created by playwright')).toBeVisible()
         })
 
         describe('and a note exists', () => {
             beforeEach(async ({ page }) => {
-                await page.getByRole('button', { name: 'New note' }).click()
-                await page.getByRole('textbox').fill('another note by playwright')
-                await page.getByRole('button', { name: 'save' }).click()
+                await createNote(page, 'another note by playwright')
             })
 
             test('importance can be changed', async ({ page }) => {
@@ -57,6 +58,6 @@ describe('Note app', () => {
             })
         })
     })
+    //! TODO: Muistiinpanon tärkeyden muutos => https://fullstackopen.com/osa5/end_to_end_testaus_playwright#tietokannan-tilan-kontrollointi
 })
-
 
