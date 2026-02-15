@@ -47,6 +47,21 @@ describe('Note app', () => {
             await expect(page.getByText('a note created by playwright')).toBeVisible()
         })
 
+        describe('and several notes exists', () => {
+            beforeEach(async ({ page }) => {
+                await createNote(page, 'first note', true)
+                await createNote(page, 'second note', true)
+                await createNote(page, 'third note', true)
+            })
+            test('one of those can be made important', async ({ page }) => {
+                const otherNoteText = page.getByText('second note')
+                const otherNoteElement = otherNoteText.locator('..')
+
+                await otherNoteElement.getByRole('button', { name: 'make not important' }).click()
+                await expect(otherNoteElement.getByText('make important')).toBeVisible()
+            })
+        })
+
         describe('and a note exists', () => {
             beforeEach(async ({ page }) => {
                 await createNote(page, 'another note by playwright')
@@ -58,6 +73,5 @@ describe('Note app', () => {
             })
         })
     })
-    //! TODO: Muistiinpanon tärkeyden muutos => https://fullstackopen.com/osa5/end_to_end_testaus_playwright#tietokannan-tilan-kontrollointi
 })
 

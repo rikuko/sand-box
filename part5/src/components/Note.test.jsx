@@ -42,7 +42,7 @@ test('Test 3.: renders content', () => {
 
 // Test 4.
 test('Test 4.: clicking the button calls event handler once', async () => {
-  const note ={
+  const note = {
     content: 'Component testing is done with react-testing-library',
     important: true
   }
