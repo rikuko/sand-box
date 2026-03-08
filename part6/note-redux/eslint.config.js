@@ -37,7 +37,7 @@ export default defineConfig([
       '@stylistic/quotes': [ 'error', 'single' ],
       '@stylistic/comma-spacing': [ 'error', { 'before': false, 'after': true } ],
       '@stylistic/arrow-spacing': [ 'error', { 'before': true, 'after': true } ],
-      '@stylistic/jsx-curly-spacing': [ 'error', { 'when': 'always', 'children': true } ],
+      //'@stylistic/jsx-curly-spacing': [ 'error', { 'when': 'never', 'children': true } ],
       '@stylistic/jsx-equals-spacing': [ 'error', 'always' ],
       
     },

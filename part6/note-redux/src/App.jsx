@@ -1,8 +1,12 @@
+import NoteForm from './components/NoteForm'
+import Notes from './components/Notes'
 
-
-function App() {
+const App = () => {
   return (
-    <div>Hello world!</div>
+    <div>
+      <NoteForm />
+      <Notes />
+    </div>
   )
 }
 
